@@ -17,7 +17,7 @@ const routes = {
     const route = await next();
 
     route.title = `${route.title ||
-    'Untitled Page'} - Панель управления Yablochkov`;
+    'Untitled Page'} - Budget planner`;
     route.description = route.description || '';
 
     return route;

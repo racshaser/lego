@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import serialize from 'serialize-javascript';
 
 /* eslint-disable react/no-danger */
 

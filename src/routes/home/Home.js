@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import withStyles from 'isomorphic-style-loader/withStyles';
+import Layout from "../../components/Layout/Layout";
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
+import WeakOverview from "../../components/WeakOverview/WeakOverview";
 import styles from './Home.css';
 
-class ErrorPage extends React.Component {
+class Home extends Component {
   render() {
     return (
-      <div style={{background: 'red'}}>
-        <h1>Hello, World</h1>
-      </div>
+     <Layout>
+       <SectionTitle left="Overview" />
+       <WeakOverview />
+     </Layout>
     )
   }
 }
 
-// export default ErrorPage;
-
-export default withStyles(styles)(ErrorPage);
+export default withStyles(styles)(Home);
