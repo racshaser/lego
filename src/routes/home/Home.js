@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import withStyles from 'isomorphic-style-loader/withStyles';
-import Layout from '../../components/Layout/Layout';
 import styles from './Home.css';
 
 const keysState = {
@@ -18,6 +17,16 @@ const keysNames = {
 };
 
 class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      38: false,
+      37: false,
+      39: false,
+      40: false,
+    };
+  }
+
   componentDidMount() {
     document.addEventListener('keydown', this.keyDown);
     document.addEventListener('keyup', this.keyUp);
@@ -36,7 +45,7 @@ class Home extends Component {
     this.onUp(e.keyCode);
   };
 
-  onDown = keyCode => {
+  onDown = async keyCode => {
     const isArrowKey = keyCode >= 37 && keyCode <= 40;
 
     if (isArrowKey) {
@@ -46,22 +55,24 @@ class Home extends Component {
         const name = keysNames[keyCode];
         keysState[keyCode] = true;
 
-        fetch('/lego', {
+        this.setState({
+          [keyCode]: true,
+        });
+
+        await fetch('/lego', {
           method: 'POST',
           cache: 'no-cache',
           credentials: 'same-origin',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ name, pressed: true }),
-        })
-          .then(res => res.json())
-          .then(console.warn);
+          body: JSON.stringify({ name, status: true }),
+        });
       }
     }
   };
 
-  onUp = keyCode => {
+  onUp = async keyCode => {
     const isArrowKey = keyCode >= 37 && keyCode <= 40;
 
     if (isArrowKey) {
@@ -71,28 +82,55 @@ class Home extends Component {
         const name = keysNames[keyCode];
         keysState[keyCode] = false;
 
-        fetch('/lego', {
+        this.setState({
+          [keyCode]: false,
+        });
+
+        await fetch('/lego', {
           method: 'POST',
           cache: 'no-cache',
           credentials: 'same-origin',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ name, pressed: false }),
-        })
-          .then(res => res.json())
-          .then(console.warn);
+          body: JSON.stringify({ name, status: false }),
+        });
       }
     }
   };
 
   render() {
     return (
-      <Layout>
-        <div className={styles.overview}>
-          <h1>Hello, World!</h1>
+      <div className={styles.container}>
+        <div className={styles.first_layer}>
+          <div
+            className={styles.arrow}
+            style={(this.state[38] && { backgroundColor: '#cfcfcf' }) || {}}
+          >
+            ↑
+          </div>
         </div>
-      </Layout>
+        <div className={styles.second_layer}>
+          <div
+            className={styles.arrow}
+            style={(this.state[37] && { backgroundColor: '#cfcfcf' }) || {}}
+          >
+            ←
+          </div>
+          <div
+            className={styles.arrow}
+            style={(this.state[40] && { backgroundColor: '#cfcfcf' }) || {}}
+          >
+            ↓
+          </div>
+          <div
+            className={styles.arrow}
+            style={(this.state[39] && { backgroundColor: '#cfcfcf' }) || {}}
+          >
+            →
+          </div>
+        </div>
+      </div>
     );
   }
 }

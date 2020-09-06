@@ -13,7 +13,10 @@ import router from './router';
 // import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
 import { lego } from './controllers/lego';
+import { poweredUP } from './connector/connector';
 // import config from './config';
+
+poweredUP.scan();
 
 process.on('unhandledRejection', (reason, p) => {
   console.error('Unhandled Rejection at:', p, 'reason:', reason);
