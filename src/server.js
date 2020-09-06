@@ -12,6 +12,7 @@ import errorPageStyle from './routes/error/ErrorPage.css';
 import router from './router';
 // import assets from './asset-manifest.json'; // eslint-disable-line import/no-unresolved
 import chunks from './chunk-manifest.json'; // eslint-disable-line import/no-unresolved
+import { lego } from './controllers/lego';
 // import config from './config';
 
 process.on('unhandledRejection', (reason, p) => {
@@ -42,6 +43,8 @@ app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.post('/lego', lego);
 
 //
 // Register server-side rendering middleware
