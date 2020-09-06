@@ -16,8 +16,7 @@ const routes = {
   async action({ next }) {
     const route = await next();
 
-    route.title = `${route.title ||
-    'Untitled Page'} - Budget planner`;
+    route.title = `${route.title || 'Untitled Page'} - Budget planner`;
     route.description = route.description || '';
 
     return route;

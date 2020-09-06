@@ -5,7 +5,7 @@ function action() {
   return {
     title: 'Home page',
     component: <Home />,
-  }
+  };
 }
 
 export default action;

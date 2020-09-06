@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import withStyles from "isomorphic-style-loader/withStyles";
-import Header from "../Header/Header";
-import Menu from "../Menu/Menu";
+import withStyles from 'isomorphic-style-loader/withStyles';
+import Header from '../Header/Header';
+import Menu from '../Menu/Menu';
 import styles from './Layout.css';
 
 class Layout extends Component {
@@ -15,11 +15,9 @@ class Layout extends Component {
       <div>
         <Header />
         <Menu />
-        <div className={styles.content}>
-          {this.props.children}
-        </div>
+        <div className={styles.content}>{this.props.children}</div>
       </div>
-    )
+    );
   }
 }
 

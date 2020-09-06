@@ -50,8 +50,10 @@ async function onLocationChange(location, action) {
 
     const renderReactApp = isInitialRender ? ReactDOM.hydrate : ReactDOM.render;
     appInstance = renderReactApp(
-      <App context={context} insertCss={insertCss}>{route.component}</App>,
-    container,
+      <App context={context} insertCss={insertCss}>
+        {route.component}
+      </App>,
+      container,
       () => {
         if (isInitialRender) {
           if (window.history && 'scrollRestoration' in window.history) {
@@ -85,7 +87,7 @@ async function onLocationChange(location, action) {
 
         window.scrollTo(scrollX, scrollY);
       },
-  );
+    );
   } catch (error) {
     if (__DEV__) {
       throw error;

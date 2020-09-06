@@ -114,7 +114,7 @@ app.use((err, req, res, next) => {
     <HTML
       title="Internal Server Error"
       description={err.message}
-      children={`<h1>${err.toString()}</h1>`}
+      children={`<h1>${err.toString()}</h1>`} // eslint-disable-line react/no-children-prop
       styles={[{ id: 'css', cssText: errorPageStyle._getCss() }]} // eslint-disable-line no-underscore-dangle
     >
       {ReactDOM.renderToString(<ErrorPageWithoutStyle error={err} />)}
