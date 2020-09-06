@@ -1,5 +1,3 @@
-const pkg = require('../package.json');
-
 const isDebug = !process.argv.includes('--release');
 
 const minimizeCssOptions = {
@@ -8,9 +6,7 @@ const minimizeCssOptions = {
 
 module.exports = () => ({
   plugins: [
-    require('autoprefixer')({
-      browsers: pkg.browserslist,
-    }),
+    require('autoprefixer')(),
     ...(isDebug
       ? []
       : [

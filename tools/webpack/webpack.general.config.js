@@ -58,9 +58,6 @@ export const config = {
             [
               '@babel/preset-env',
               {
-                targets: {
-                  browsers: pkg.browserslist,
-                },
                 forceAllTransforms: !isDebug,
                 modules: false,
                 useBuiltIns: false,
